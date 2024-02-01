@@ -38,16 +38,18 @@
   height: 35px;
   font-size: 16px;
   border-radius: 5px;
+  padding-left: 14px;
   outline: none;
-  border: 1px solid rgb(138, 62, 62);
+  border: none;
 }
 
 .input-area::placeholder {
   color:rgb(138, 62, 62);
 } 
 
-.input-area:hover {
-  border: 2px solid rgb(138, 62, 62); 
+.input-area:hover,
+.input-area:focus {
+  background-color: rgb(253, 242, 246); 
 }
 
 
@@ -64,10 +66,10 @@
   width: 70px;
   height: 35px;
   border: none;
-  background-color:rgb(253, 149, 166);
+  background-color:rgb(255, 143, 161);
   }
   
-  .submit-button:focus,
+
   .submit-button:hover {
    background-color: rgb(252, 120, 149);
   }
