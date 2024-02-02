@@ -12,22 +12,22 @@ const refs = {
     loadingIndicator: document.querySelector(".loader")
 };
 
-refs.form.addEventListener("submit", handleSearch);  //лісенер на форму
+refs.form.addEventListener("submit", handleSearch);  
 
 function clearResultContainer() {
-    refs.resultContainer.innerHTML = "";//div
+    refs.resultContainer.innerHTML = "";
 }
 
 function showLoadingIndicator() {
-    refs.loadingIndicator.style.display = "block";//on lo
+    refs.loadingIndicator.style.display = "block";
 }
 
 function hideLoadingIndicator() {
-    refs.loadingIndicator.style.display = "none";//off lo
+    refs.loadingIndicator.style.display = "none";
 }
 
 
-function handleSearch(event) {  // отримуємо дані з інпуту
+function handleSearch(event) { 
     event.preventDefault();
     const form = event.currentTarget;
     const requestForSearch = form.elements.search.value;
@@ -41,11 +41,11 @@ function handleSearch(event) {  // отримуємо дані з інпуту
                 message: "Please, try again!",
                 color: "red"
             });
-            hideLoadingIndicator(); //крутялка
+            hideLoadingIndicator();
             return;
         }
-    clearResultContainer();// контейнер
-    showLoadingIndicator()// крутялка
+    clearResultContainer();
+    showLoadingIndicator()
 
 
     searchPictures(requestForSearch).then((data) =>{
@@ -62,13 +62,17 @@ function handleSearch(event) {  // отримуємо дані з інпуту
                 markup +=createPicturesMarkup(pic);
             }    
         refs.resultContainer.innerHTML = markup;
+        const lightbox = new SimpleLightbox(".image-container a", {
+            captionsData: "alt", 
+            captionDelay: 250,
+        });
         }
     })
     .catch(error => {
         console.error('Error:', error);
     })
     .finally(() => {
-        hideLoadingIndicator(); //крутялка
+        hideLoadingIndicator();
         form.reset();
         
     });
@@ -104,8 +108,3 @@ function createPicturesMarkup({likes, views, comments, downloads, tags, webforma
     </li>
 `
 }
-
-const lightbox = new SimpleLightbox(".gallery a", {  
-    captionsData: "alt", 
-    captionDelay: 250,
-  });
